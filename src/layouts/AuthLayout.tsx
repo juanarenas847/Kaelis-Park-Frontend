@@ -2,27 +2,49 @@ import { LeftPanel } from "../components/auth/paneles/LeftPanel";
 import { RightPanel } from "../components/auth/paneles/RightPanel";
 
 interface Props {
-    children: React.ReactNode;
+  children: React.ReactNode;
+  showBackButton?: boolean;
 }
 
-export const AuthLayout = ({
-    children
-}: Props) => {
+export const AuthLayout = ({ children, showBackButton = true }: Props) => {
+  return (
+    <div
+      className="
+        min-h-screen
+        bg-[#dfe2e7]
 
-    return (
-        <div className="  min-h-screen bg-[#dfe2e7] flex items-center justify-center p-5">
+        p-3
+        sm:p-5
+        flex
+        flex-col
+        lg:justify-center
+        lg:items-center
+      "
+    >
+      <div
+        className="
+          w-full
+          lg:max-w-425
 
-            <div className=" w-full max-w-400 h-[92vh] rounded-[40px] overflow-hidden flex shadow-xl
-            ">
+          bg-white
 
-                <LeftPanel />
+          rounded-[40px]
 
-                <RightPanel>
-                    {children}
-                </RightPanel>
+          shadow-xl
 
-            </div>
+          overflow-hidden
 
-        </div>
-    )
-}
+          flex
+          flex-col
+          lg:flex-row
+
+          lg:h-[95vh]
+        "
+      >
+        <LeftPanel />
+
+        <RightPanel showBackButton={showBackButton}>{children}</RightPanel>
+      </div>
+    </div>
+  );
+};
